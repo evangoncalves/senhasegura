@@ -1,5 +1,7 @@
-module senhasegura
+module github.com/evangoncalves/senhasegura
 
 go 1.18
 
 require github.com/google/go-querystring v1.1.0
+
+replace github.com/evangoncalves/senhasgura/sdk => /sdk

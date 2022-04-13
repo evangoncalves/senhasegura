@@ -2,7 +2,8 @@ package main
 
 import (
 	"fmt"
-	"senhasegura/sdk"
+
+	"github.com/evangoncalves/senhasegura/sdk"
 )
 
 func main() {
