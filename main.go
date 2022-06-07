@@ -3,12 +3,12 @@ package main
 import (
 	"fmt"
 
-	"github.com/evangoncalves/senhasegura/sdk"
+	senhaseguraSDK "github.com/evangoncalves/senhasegura/sdk"
 )
 
 func main() {
 
-	client := sdk.NewClient("https://10.0.0.161/", "0c2fc858789bf762aacb16ef95099ced06254bf04", "43627168c56608ac1eee1ab2c1ef7889")
+	client := senhaseguraSDK.NewClient("https://10.0.0.161/", "0c2fc858789bf762aacb16ef95099ced06254bf04", "43627168c56608ac1eee1ab2c1ef7889")
 
 	for _, secret := range client.GetApplication().Secrets {
 		for _, data := range secret.Data {
@@ -18,24 +18,24 @@ func main() {
 		}
 	}
 
-	// app := sdk.NewApplicationObject("Test2", "Demonstration", "Development", "", "", "", "", "", []string{"test"}, []string{}, []string{}, "", []string{}, []string{}, "")
+	app := senhaseguraSDK.NewApplication("Test2", "Demonstration", "Development", "", "", "", "", "", []string{"test"}, []string{}, []string{}, "", []string{}, []string{}, "")
 
-	// client.CreateApplication(app)
+	client.CreateApplication(app)
 
 	kv := make(map[string]string)
 	kv["KEY"] = "VALUE"
 	kv["TEST_KEY"] = "TEST_VALUE"
 	kv["NEW_KEY"] = "NEW_VALUE2"
 
-	secret := sdk.NewSecretObjectData(
-		[]sdk.AccessKey{
-			sdk.NewAccessKey("aws", "AKIASQGYZVJA43ISDLOK", "", "AWS_ACCESS_KEY", "AWS_SECRET_ACCESS_KEY"),
+	secret := senhaseguraSDK.NewSecretData(
+		[]senhaseguraSDK.AccessKey{
+			senhaseguraSDK.NewAccessKey("aws", "AKIASQGYZVJA43ISDLOK", "", "AWS_ACCESS_KEY", "AWS_SECRET_ACCESS_KEY"),
 		},
-		[]sdk.Credential{
-			sdk.NewCredential("api-user", "", "api-server", "TEST INFO", "USER", "PASS", "HOST", "CONN"),
+		[]senhaseguraSDK.Credential{
+			senhaseguraSDK.NewCredential("api-user", "", "api-server", "TEST INFO", "USER", "PASS", "HOST", "CONN"),
 		},
-		sdk.NewKeyValue(kv),
+		senhaseguraSDK.NewKeyValue(kv),
 	)
 
-	fmt.Println(client.CreateSecret(sdk.NewSecretObject("senhasegura/sdk", "", "Generic", "This is a Secret created through the SDK", "", secret)))
+	fmt.Println(client.CreateSecret(senhaseguraSDK.NewSecret("senhasegura/senhaseguraSDK", "", "Generic", "This is a Secret created through the senhaseguraSDK", "", secret)))
 }

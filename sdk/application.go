@@ -1,15 +1,15 @@
 package sdk
 
-type ApplicationObject struct {
+type Application struct {
+	UniqueKey            string   `url:"unique_key,omitempty"`
 	Name                 string   `url:"application,omitempty"`
 	System               string   `url:"system,omitempty"`
 	Environment          string   `url:"environment,omitempty"`
-	UniqueKey            string   `url:"unique_key,omitempty"`
+	Description          string   `url:"description,omitempty"`
+	Tags                 []string `url:"tags,omitempty"`
 	AuthenticationMethod string   `url:"authentication_method,omitempty"`
 	LineOfBusiness       string   `url:"line_of_business,omitempty"`
 	Type                 string   `url:"application_type,omitempty"`
-	Description          string   `url:"description,omitempty"`
-	Tags                 []string `url:"tags,omitempty"`
 	ARNs                 []string `url:"aws_arns,omitempty"`
 	Resources            []string `url:"authorized_resources,omitempty"`
 	Expiration           string   `url:"expiration_date,omitempty"`
@@ -18,7 +18,7 @@ type ApplicationObject struct {
 	Certificate          string   `url:"certificate_fingerprint,omitempty"`
 }
 
-func NewApplicationObject(
+func NewApplication(
 	name string,
 	system string,
 	environment string,
@@ -34,17 +34,17 @@ func NewApplicationObject(
 	allowedIPs []string,
 	allowedReferers []string,
 	certificate string,
-) ApplicationObject {
-	return ApplicationObject{
+) Application {
+	return Application{
+		uniqueKey,
 		name,
 		system,
 		environment,
-		uniqueKey,
+		description,
+		tags,
 		authMethod,
 		lineOfBusiness,
 		applicationType,
-		description,
-		tags,
 		arns,
 		resources,
 		expiration,

@@ -6,7 +6,7 @@ import (
 	"log"
 )
 
-type SecretObject struct {
+type Secret struct {
 	Identity    string `url:"identity,omitempty"`
 	Name        string `url:"name,omitempty"`
 	Engine      string `url:"engine,omitempty"`
@@ -15,7 +15,7 @@ type SecretObject struct {
 	Data        string `url:"data,omitempty"`
 }
 
-type SecretObjectData struct {
+type SecretData struct {
 	AccessKeys  []AccessKeyContainer  `json:"access_keys,omitempty"`
 	Credentials []CredentialContainer `json:"credentials,omitempty"`
 	KeyValues   KeyValue              `json:"key_value,omitempty"`
@@ -60,8 +60,8 @@ type KeyValue struct {
 	Fields map[string]string `json:"fields,omitempty"`
 }
 
-func NewSecretObject(identity string, name string, engine string, description string, expiration string, secret SecretObjectData) SecretObject {
-	return SecretObject{
+func NewSecret(identity string, name string, engine string, description string, expiration string, secret SecretData) Secret {
+	return Secret{
 		identity,
 		name,
 		engine,
@@ -71,7 +71,7 @@ func NewSecretObject(identity string, name string, engine string, description st
 	}
 }
 
-func NewSecretObjectData(accessKeys []AccessKey, credentials []Credential, keyValues KeyValue) SecretObjectData {
+func NewSecretData(accessKeys []AccessKey, credentials []Credential, keyValues KeyValue) SecretData {
 	var accessKeysContainer []AccessKeyContainer
 	var credentialsContainer []CredentialContainer
 
@@ -83,7 +83,7 @@ func NewSecretObjectData(accessKeys []AccessKey, credentials []Credential, keyVa
 		credentialsContainer = append(credentialsContainer, CredentialContainer{credential})
 	}
 
-	return SecretObjectData{
+	return SecretData{
 		accessKeysContainer,
 		credentialsContainer,
 		keyValues,
@@ -105,7 +105,7 @@ func NewAccessKey(accessKeyType string, accessKeyID string, secretAccessKey stri
 }
 
 func NewCredential(username string, password string, hostname string, addInfo string, usernameLabel string, passwordLabel string, hostnameLabel string, addInfoLabel string) Credential {
-	credentials := CredentialField{
+	credentialFields := CredentialField{
 		username,
 		password,
 		hostname,
@@ -117,7 +117,7 @@ func NewCredential(username string, password string, hostname string, addInfo st
 	}
 
 	return Credential{
-		credentials,
+		credentialFields,
 	}
 }
 
@@ -127,10 +127,11 @@ func NewKeyValue(fields map[string]string) KeyValue {
 	}
 }
 
-func (s SecretObjectData) Encode() string {
+func (s SecretData) Encode() string {
 	sJSON, err := json.Marshal(s)
 	if err != nil {
 		log.Fatal("Error converting object to JSON")
 	}
+
 	return base64.StdEncoding.EncodeToString(sJSON)
 }

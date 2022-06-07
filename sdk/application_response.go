@@ -3,22 +3,23 @@ package sdk
 import "encoding/json"
 
 type ApplicationResponse struct {
-	ClientID     string      `json:"id,omitempty"`
-	ClientSecret string      `json:"signature,omitempty"`
-	Application  Application `json:"application,omitempty"`
-	Response     Response    `json:"response,omitempty"`
+	ClientID     string                  `json:"id,omitempty"`
+	ClientSecret string                  `json:"signature,omitempty"`
+	Application  ApplicationResponseData `json:"application,omitempty"`
+	Response     Response                `json:"response,omitempty"`
 }
 
-type Application struct {
-	Name        string   `json:"name,omitempty"`
-	System      string   `json:"system,omitempty"`
-	Environment string   `json:"environment,omitempty"`
-	Description string   `json:"description,omitempty"`
-	Tags        []string `json:"tags,omitempty"`
-	Secrets     []Secret `json:"secrets,omitempty"`
+type ApplicationResponseData struct {
+	Name        string               `json:"name,omitempty"`
+	System      string               `json:"system,omitempty"`
+	Environment string               `json:"environment,omitempty"`
+	Description string               `json:"description,omitempty"`
+	Tags        []string             `json:"tags,omitempty"`
+	Secrets     []SecretResponseData `json:"secrets,omitempty"`
 }
 
-type Secret struct {
+// An object containing all secret data from senhasegura, including its name, identity, version, expiration date, engine and sensitive information as data property
+type SecretResponseData struct {
 	ID         string              `json:"secret_id,omitempty"`
 	Name       string              `json:"secret_name,omitempty"`
 	Identity   string              `json:"identity,omitempty"`

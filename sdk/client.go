@@ -109,6 +109,10 @@ func (c *Client) CreateApplication(application ApplicationObject) {
 	c.ClientSecret = response.ClientSecret
 }
 
+func (c Client) GetSecret() Secret {
+	return nil
+}
+
 func (c Client) CreateSecret(secret SecretObject) Application {
 	if secret.Data == "" {
 		log.Fatal("Secret data not set")

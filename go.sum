@@ -1,3 +1,5 @@
+github.com/evangoncalves/senhasegura/sdk v0.0.0-20220413010436-f8096c9f580c h1:ZI78JZ7oL4H0TkaZzp7gx5J00q8zgnUbkNsM/HEBGOU=
+github.com/evangoncalves/senhasegura/sdk v0.0.0-20220413010436-f8096c9f580c/go.mod h1:xmbBgyqEwrZtvfZm4FdewL0258aMw10XwzXBcPaa8aM=
 github.com/google/go-cmp v0.5.2 h1:X2ev0eStA3AbceY54o37/0PQ/UWqKEiiO2dKL5OPaFM=
 github.com/google/go-cmp v0.5.2/go.mod h1:v8dTdLbMG2kIc/vJvl+f65V22dbkXbowE6jgT/gNBxE=
 github.com/google/go-querystring v1.1.0 h1:AnCroh3fv4ZBgVIf1Iwtovgjaw/GiKJo8M8yD/fhyJ8=
